@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/boring-darwin/totalitycorp-demo/userpb";
+
+message UserResponse {
+    int32 id = 1;
+    string fname = 2;
+    string city  = 3;
+    int32 phone = 4;
+    float height = 5;  
+    bool married = 6;
+}
+
+message UserRequest {
+    int32 id = 1;
+}
+
+message UserListRequest {
+    repeated int32 ids = 1;
+}
+
+message UserListResponse {
+    repeated UserResponse userResponseList = 1;
+}
+
+
+
+service UserService{
+    rpc GetUser(UserRequest) returns (UserResponse);
+    rpc GetListOfUser(UserListRequest) returns (UserListResponse);
+}
